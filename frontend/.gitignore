@@ -1,0 +1,20 @@
+node_modules/
+.next/
+out/
+build/
+
+# Environment
+.env
+.env.local
+
+# Next.js generated types
+next-env.d.ts
+
+# TypeScript incremental build info
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# OS
+.DS_Store
