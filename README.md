@@ -166,7 +166,9 @@ Validation failures return **400** with:
 
 ## Submitting
 
-1. Push your work to a **public Git repository** and share the link.
+1. Push your work to a **new repository of your own** (do not fork this one). Keep
+   it private until the deadline if you prefer, then make it public — or share
+   access with us — when you submit the link.
 2. Record a **3–5 minute Loom video** walking through your changes: how you
    implemented `updateProduct`, how your stock-adjustment endpoint works (especially
    the transactional part), and a quick demo of both features in the UI.
