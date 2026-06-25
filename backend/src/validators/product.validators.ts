@@ -28,3 +28,10 @@ export const updateProductSchema = createProductSchema.partial();
 
 export type CreateProductInput = z.infer<typeof createProductSchema>;
 export type UpdateProductInput = z.infer<typeof updateProductSchema>;
+
+export const adjustStockSchema = z.object({
+  delta: z.number().int('Delta must be a whole number').refine((v) => v !== 0, 'Delta must be non-zero'),
+  reason: z.string().min(3, 'Reason must be at least 3 characters').max(200, 'Reason must be at most 200 characters'),
+});
+
+export type AdjustStockInput = z.infer<typeof adjustStockSchema>;

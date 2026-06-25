@@ -31,3 +31,8 @@ export function deleteProduct(req: Request, res: Response): void {
   productService.deleteProduct(Number(req.params.id));
   res.status(204).send();
 }
+
+export function adjustStock(req: Request, res: Response): void {
+  const product = productService.adjustStock(Number(req.params.id), req.body);
+  res.json(product);
+}

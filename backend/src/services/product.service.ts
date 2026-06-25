@@ -1,7 +1,9 @@
 import * as productRepository from '../repositories/product.repository';
-import { NotFoundError, NotImplementedError } from '../errors';
+import { NotFoundError, AppError } from '../errors';
 import type { Product } from '../types/product';
-import type { CreateProductInput, UpdateProductInput } from '../validators/product.validators';
+import type { CreateProductInput, UpdateProductInput, AdjustStockInput } from '../validators/product.validators';
+import { withTransaction } from '../db/transaction';
+
 
 /**
  * Product business logic.
@@ -56,3 +58,24 @@ export function updateProduct(id: number, input: UpdateProductInput): Product {
   return productRepository.update(id, input) as Product;
 }
 
+export function adjustStock(id: number, input: AdjustStockInput): Product {
+  return withTransaction(() => {
+    const product = productRepository.findById(id);
+    if (!product) {
+      throw new NotFoundError(`Product ${id} not found`);
+    }
+
+    const newStock = product.stock + input.delta;
+    if (newStock < 0) {
+      const err = new (class extends AppError {
+        constructor() {
+          super('INSUFFICIENT_STOCK', 'Insufficient stock for this adjustment', 400);
+        }
+      })();
+      throw err;
+    }
+
+    productRepository.updateStock(id, newStock);
+    return productRepository.findById(id) as Product;
+  });
+}

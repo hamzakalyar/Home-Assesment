@@ -46,3 +46,9 @@ export function update(id: number, fields: UpdateProductInput): Product | undefi
 export function deleteById(id: number): boolean {
   return deleteStatement.run(id).changes > 0;
 }
+
+const updateStockStatement = db.prepare(`UPDATE products SET stock = ? WHERE id = ?`);
+
+export function updateStock(id: number, newStock: number): void {
+  updateStockStatement.run(newStock, id);
+}
