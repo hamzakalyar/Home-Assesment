@@ -56,7 +56,7 @@ describe('productService', () => {
   // --- TASK A: implement productService.updateProduct, then remove `.skip` from
   // --- the two tests below and make them pass.
 
-  it.skip('updateProduct updates only the provided fields', () => {
+  it('updateProduct updates only the provided fields', () => {
     const created = productService.createProduct(validProduct);
 
     const updated = productService.updateProduct(created.id, { price: 99.99 });
@@ -66,7 +66,7 @@ describe('productService', () => {
     expect(updated.stock).toBe(validProduct.stock);
   });
 
-  it.skip('updateProduct throws NotFoundError for a nonexistent id', () => {
+  it('updateProduct throws NotFoundError for a nonexistent id', () => {
     expect(() => productService.updateProduct(9999, { price: 99.99 })).toThrow(NotFoundError);
   });
 });

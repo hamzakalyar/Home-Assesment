@@ -49,6 +49,10 @@ export function deleteProduct(id: number): void {
  * The `updateCustomer` method in customer.service.ts is the reference to follow.
  * After implementing, unskip the two tests in tests/productService.test.ts.
  */
-export function updateProduct(_id: number, _input: UpdateProductInput): Product {
-  throw new NotImplementedError('updateProduct is not implemented yet (Task A)');
+export function updateProduct(id: number, input: UpdateProductInput): Product {
+  // Ensure the product exists before attempting the update.
+  getProductById(id);
+
+  return productRepository.update(id, input) as Product;
 }
+
