@@ -14,6 +14,8 @@ export const productsApi = {
   remove: (id: number) => apiClient.delete(`/api/products/${id}`),
 
   // TASK B — add the stock-adjustment call here, e.g.:
-  //   adjustStock: (id: number, input: { delta: number; reason: string }) =>
-  //     apiClient.post<Product>(`/api/products/${id}/adjust-stock`, input),
+
+  adjustStock: (id: number, input: { delta: number; reason: string }) =>
+    apiClient.post<Product>(`/api/products/${id}/adjust-stock`, input),
+
 };

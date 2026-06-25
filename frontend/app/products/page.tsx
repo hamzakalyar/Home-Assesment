@@ -120,7 +120,12 @@ export default function ProductsPage() {
         onSaved={() => void loadProducts()}
       />
 
-      <AdjustStockModal product={adjustingStock} onClose={() => setAdjustingStock(null)} />
+      <AdjustStockModal
+        product={adjustingStock}
+        onClose={() => setAdjustingStock(null)}
+        onSuccess={() => void loadProducts()}
+      />
+
     </div>
   );
 }
